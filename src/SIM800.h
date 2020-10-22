@@ -30,7 +30,7 @@
 
 #define DEF_SPEED   19200                       // The default baudrate which is used if the user calls "void bauds(unsigned long)" (in simserial.h) without arguments.
 #define DEF_TIME_LIMIT  1000                    // The default max time duration in milliseconds to wait for a reply from the SIM800 chip.
-#define DEF_BUFFER_SIZE  300                    // Size of the char[] ioBuffer which is used to buffer outgoing commands and incoming replies.
+#define DEF_BUFFER_SIZE  128                    // Size of the char[] ioBuffer which is used to buffer outgoing commands and incoming replies.
 
 // Valid cmd types for AT cmd wrapper methods. Most AT methods don't support all CmdTypes. User must consult with official AT cmd manual.
 typedef enum 
@@ -129,9 +129,6 @@ private:
     uint8_t key_pin;                            // Key pin of SIM800. Used to turn on/off module.
     uint8_t rst_pin;                            // RESET pin of SIM800. Used to reset module.
 
-    // PROTOTYPES
-    char * SIM800::read_fast();
-    
 };
 
 #endif

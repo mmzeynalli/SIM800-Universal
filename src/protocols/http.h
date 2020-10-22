@@ -2,7 +2,7 @@ public:
 
     void http_init();
     void http_post(char *, char *);
-    void http_get(char *, char *);
+    void http_get(char *);
 
 
     void http_end();

@@ -82,15 +82,20 @@ uint16_t SIM800::ftp_read(char *str, uint16_t len)
     writeln(ioBuffer);
 
     while(!simCom->available());
-   
+
+#ifdef DEBUG
     Serial.println(simCom->readStringUntil('\n'));  // AT+FTPGET=2,len
+#endif
     
 #ifdef SIM900    
     simCom->readStringUntil('\n');
 #endif
 
     String ans = simCom->readStringUntil('\n');     // +FTPGET=2,len
+
+#ifdef DEBUG
     Serial.println(ans);
+#endif
 
     uint16_t available = ans.substring(ans.indexOf(",") + 1).toInt();
     uint16_t i;

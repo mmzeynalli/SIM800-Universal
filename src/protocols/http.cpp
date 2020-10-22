@@ -47,9 +47,8 @@ void SIM800::http_post(char *dest, char *data)
     send_failed |= (NULL == strstr(ioBuffer, "OK"));
 }
 
-void SIM800::http_get(char *dest, char *data)
+void SIM800::http_get(char *dest)
 {
-    
     char url[101];
     snprintf(url, 100, "\"URL\",\"%s\"", dest);
 
@@ -61,7 +60,7 @@ void SIM800::http_get(char *dest, char *data)
     httpAction(SET, "0");
 }
 
-void SIM800::http_read(char *arr)
+void SIM800::http_read(char *buff)
 {
     http_get_code();
 
@@ -77,7 +76,7 @@ void SIM800::http_read(char *arr)
     p = strtok(NULL, " ");              // Datalen -> comment this line for SIM900, as Datalen is not seperated from +HTTPREAD:
 #endif
 
-    strcpy(arr, strtok(NULL, " "));           // Data itself
+    strcpy(buff, strtok(NULL, " "));           // Data itself
     free(p);
 }
 
